@@ -21,7 +21,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public DataBaseHelper(@Nullable Context context) {
         super(context, DABASE_NAME, null, 1);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -79,7 +79,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID='" + id + "'";
         Cursor cursor = db.rawQuery(query, null);
 
-        return cursor;
+        if (cursor != null) {
+            Toast.makeText(context, "Data will be shown", Toast.LENGTH_SHORT).show();
+            return cursor;
+        } else {
+            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+
     }
 
 
@@ -93,8 +101,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor viewAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-
+        Cursor cursor;
+        cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         return cursor;
 
     }

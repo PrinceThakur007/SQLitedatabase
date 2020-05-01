@@ -1,5 +1,6 @@
 package com.example.sqlite;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
@@ -57,19 +58,37 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        buttonViewAll.setOnClickListener(new View.OnClickListener() {
+        buttonGetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor c = myDB.getData("1");
+                Cursor c = myDB.getData(editId.getText().toString());
 
                 String data = null;
                 if (c.moveToNext()) {
                     data = c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n" + c.getString(3);
                 }
-
-
-                println(data);
+                Toast.makeText(MainActivity.this, data, Toast.LENGTH_SHORT).show();
             }
+        });
+
+
+        buttonViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor c = myDB.viewAllData();
+                StringBuffer data = new StringBuffer();
+                if (c.getCount() == 0) {
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
+
+                } else {
+                    while (c.moveToNext()) {
+                        data.append(c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n" + c.getString(3));
+
+                    }
+                    Toast.makeText(MainActivity.this, data.toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
         });
 
 

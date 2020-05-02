@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     while (c.moveToNext()) {
-                        data.append(c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n" + c.getString(3));
+                        data.append(c.getString(0) + "\n" + c.getString(1) + "\n" + c.getString(2) + "\n" + c.getString(3)+"\n\n");
 
                     }
                     Toast.makeText(MainActivity.this, data.toString(), Toast.LENGTH_LONG).show();

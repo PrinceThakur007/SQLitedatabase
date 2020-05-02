@@ -55,6 +55,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+
+//    public boolean getUpdateData(String id){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor=getData(id);
+//
+//        if(cursor.moveToNext())
+//        {
+//
+//        }
+//
+//
+//    }
+
     public boolean updateData(String id, String name, String email, String age) {
 
         SQLiteDatabase db = this.getWritableDatabase();
